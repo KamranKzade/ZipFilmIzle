@@ -23,7 +23,7 @@ public partial class UC_Movie : UserControl
 
         pictureBox1.Load(movie.Poster);
         lbl_movie_name.Text = movie.Title;
-        lbl_year.Text = $"YEAR: {movie.Country},{movie.Year}";
+        lbl_year.Text = $"YEAR: {movie.Year}";
         lbl_imdb.Text = $"IMDB: {movie?.Ratings?[0].Value ?? "None"}";
 
     }

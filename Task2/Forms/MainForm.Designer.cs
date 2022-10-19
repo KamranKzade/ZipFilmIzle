@@ -1,6 +1,6 @@
 ﻿namespace ZipFilmIzle
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.btn_reflesh = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt_search = new System.Windows.Forms.TextBox();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_search = new System.Windows.Forms.Button();
             this.btn_elaqe = new System.Windows.Forms.Button();
@@ -62,6 +62,7 @@
             this.btn_reflesh.BackColor = System.Drawing.Color.Transparent;
             this.btn_reflesh.BackgroundImage = global::ZipFilmIzle.Properties.Resources.film;
             this.btn_reflesh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_reflesh.Enabled = false;
             this.btn_reflesh.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btn_reflesh.Location = new System.Drawing.Point(374, 9);
             this.btn_reflesh.Name = "btn_reflesh";
@@ -69,16 +70,17 @@
             this.btn_reflesh.TabIndex = 1;
             this.btn_reflesh.UseVisualStyleBackColor = false;
             // 
-            // textBox1
+            // txt_search
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI Historic", 19.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(10, 98);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.PlaceholderText = "Film, dizi ve ya oyuncu adi";
-            this.textBox1.Size = new System.Drawing.Size(466, 64);
-            this.textBox1.TabIndex = 2;
+            this.txt_search.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txt_search.Font = new System.Drawing.Font("Segoe UI Historic", 19.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.txt_search.Location = new System.Drawing.Point(10, 98);
+            this.txt_search.Multiline = true;
+            this.txt_search.Name = "txt_search";
+            this.txt_search.PlaceholderText = "Film, dizi ve ya oyuncu adi";
+            this.txt_search.Size = new System.Drawing.Size(466, 64);
+            this.txt_search.TabIndex = 2;
+            this.txt_search.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_search_KeyDown);
             // 
             // btn_cancel
             // 
@@ -91,6 +93,7 @@
             this.btn_cancel.TabIndex = 3;
             this.btn_cancel.UseVisualStyleBackColor = false;
             this.btn_cancel.Visible = false;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // btn_search
             // 
@@ -102,6 +105,7 @@
             this.btn_search.Size = new System.Drawing.Size(74, 64);
             this.btn_search.TabIndex = 4;
             this.btn_search.UseVisualStyleBackColor = false;
+            this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
             // 
             // btn_elaqe
             // 
@@ -118,6 +122,7 @@
             // btn_yeni
             // 
             this.btn_yeni.BackColor = System.Drawing.Color.Transparent;
+            this.btn_yeni.Enabled = false;
             this.btn_yeni.Font = new System.Drawing.Font("Times New Roman", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.btn_yeni.Location = new System.Drawing.Point(10, 191);
             this.btn_yeni.Name = "btn_yeni";
@@ -129,6 +134,7 @@
             // btn_en_izlenen
             // 
             this.btn_en_izlenen.BackColor = System.Drawing.Color.Transparent;
+            this.btn_en_izlenen.Enabled = false;
             this.btn_en_izlenen.Font = new System.Drawing.Font("Times New Roman", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.btn_en_izlenen.Location = new System.Drawing.Point(292, 191);
             this.btn_en_izlenen.Name = "btn_en_izlenen";
@@ -140,6 +146,7 @@
             // btn_en_yorumcu
             // 
             this.btn_en_yorumcu.BackColor = System.Drawing.Color.Transparent;
+            this.btn_en_yorumcu.Enabled = false;
             this.btn_en_yorumcu.Font = new System.Drawing.Font("Times New Roman", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.btn_en_yorumcu.Location = new System.Drawing.Point(584, 191);
             this.btn_en_yorumcu.Name = "btn_en_yorumcu";
@@ -151,6 +158,7 @@
             // btn_en_beyeni
             // 
             this.btn_en_beyeni.BackColor = System.Drawing.Color.Transparent;
+            this.btn_en_beyeni.Enabled = false;
             this.btn_en_beyeni.Font = new System.Drawing.Font("Times New Roman", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.btn_en_beyeni.Location = new System.Drawing.Point(877, 191);
             this.btn_en_beyeni.Name = "btn_en_beyeni";
@@ -194,7 +202,7 @@
             this.panel1.Controls.Add(this.btn_en_izlenen);
             this.panel1.Controls.Add(this.btn_reflesh);
             this.panel1.Controls.Add(this.btn_yeni);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.txt_search);
             this.panel1.Controls.Add(this.btn_elaqe);
             this.panel1.Controls.Add(this.btn_search);
             this.panel1.Controls.Add(this.btn_cancel);
@@ -206,20 +214,21 @@
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 241);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1156, 355);
             this.flowLayoutPanel1.TabIndex = 9;
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1156, 596);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
@@ -232,7 +241,7 @@
 
         private Label label1;
         private Button btn_reflesh;
-        private TextBox textBox1;
+        private TextBox txt_search;
         private Button btn_cancel;
         private Button btn_search;
         private Button btn_elaqe;
