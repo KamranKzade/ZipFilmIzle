@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txt_writer = new System.Windows.Forms.TextBox();
+            this.txt_actors = new System.Windows.Forms.TextBox();
+            this.txt_description = new System.Windows.Forms.TextBox();
             this.lbl_descrip = new System.Windows.Forms.Label();
             this.lbl_imdb = new System.Windows.Forms.Label();
             this.lbl_languages = new System.Windows.Forms.Label();
@@ -39,13 +42,14 @@
             this.lbl_writer = new System.Windows.Forms.Label();
             this.lbl_film_name = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.txt_description = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txt_writer);
+            this.panel1.Controls.Add(this.txt_actors);
             this.panel1.Controls.Add(this.txt_description);
             this.panel1.Controls.Add(this.lbl_descrip);
             this.panel1.Controls.Add(this.lbl_imdb);
@@ -62,6 +66,44 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 500);
             this.panel1.TabIndex = 0;
+            // 
+            // txt_writer
+            // 
+            this.txt_writer.BackColor = System.Drawing.Color.Wheat;
+            this.txt_writer.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_writer.Enabled = false;
+            this.txt_writer.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.txt_writer.Location = new System.Drawing.Point(422, 53);
+            this.txt_writer.Multiline = true;
+            this.txt_writer.Name = "txt_writer";
+            this.txt_writer.ReadOnly = true;
+            this.txt_writer.Size = new System.Drawing.Size(375, 35);
+            this.txt_writer.TabIndex = 3;
+            // 
+            // txt_actors
+            // 
+            this.txt_actors.BackColor = System.Drawing.Color.Wheat;
+            this.txt_actors.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_actors.Enabled = false;
+            this.txt_actors.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.txt_actors.Location = new System.Drawing.Point(422, 153);
+            this.txt_actors.Name = "txt_actors";
+            this.txt_actors.ReadOnly = true;
+            this.txt_actors.Size = new System.Drawing.Size(375, 23);
+            this.txt_actors.TabIndex = 3;
+            // 
+            // txt_description
+            // 
+            this.txt_description.BackColor = System.Drawing.Color.Wheat;
+            this.txt_description.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_description.Enabled = false;
+            this.txt_description.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.txt_description.Location = new System.Drawing.Point(321, 412);
+            this.txt_description.Multiline = true;
+            this.txt_description.Name = "txt_description";
+            this.txt_description.ReadOnly = true;
+            this.txt_description.Size = new System.Drawing.Size(476, 85);
+            this.txt_description.TabIndex = 2;
             // 
             // lbl_descrip
             // 
@@ -166,16 +208,6 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // txt_description
-            // 
-            this.txt_description.BackColor = System.Drawing.Color.Wheat;
-            this.txt_description.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.txt_description.Location = new System.Drawing.Point(321, 412);
-            this.txt_description.Multiline = true;
-            this.txt_description.Name = "txt_description";
-            this.txt_description.Size = new System.Drawing.Size(476, 85);
-            this.txt_description.TabIndex = 2;
-            // 
             // MovieInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -206,5 +238,7 @@
         private Label lbl_imdb;
         private Label lbl_descrip;
         private TextBox txt_description;
+        private TextBox txt_actors;
+        private TextBox txt_writer;
     }
 }
