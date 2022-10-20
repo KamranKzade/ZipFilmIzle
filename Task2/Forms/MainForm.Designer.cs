@@ -62,13 +62,13 @@
             this.btn_reflesh.BackColor = System.Drawing.Color.Transparent;
             this.btn_reflesh.BackgroundImage = global::ZipFilmIzle.Properties.Resources.film;
             this.btn_reflesh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btn_reflesh.Enabled = false;
             this.btn_reflesh.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btn_reflesh.Location = new System.Drawing.Point(374, 9);
             this.btn_reflesh.Name = "btn_reflesh";
             this.btn_reflesh.Size = new System.Drawing.Size(76, 64);
             this.btn_reflesh.TabIndex = 1;
             this.btn_reflesh.UseVisualStyleBackColor = false;
+            this.btn_reflesh.Click += new System.EventHandler(this.btn_reflesh_Click);
             // 
             // txt_search
             // 

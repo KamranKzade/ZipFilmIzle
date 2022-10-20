@@ -87,4 +87,6 @@ public partial class MainForm : Form
 
     private void btn_cancel_Click(object sender, EventArgs e) => txt_search.Text = string.Empty;
 
+    private void btn_reflesh_Click(object sender, EventArgs e) => flowLayoutPanel1.Controls.Clear();
+
 }
