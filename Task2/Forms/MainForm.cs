@@ -11,12 +11,13 @@ public partial class MainForm : Form
     const string _url = $"http://www.omdbapi.com/?apikey={_apiKey}";
     private List<string> _movieDataBase;
 
+
     public MainForm()
     {
         InitializeComponent();
         _movieDataBase = new();
-        if (File.Exists("MovieDataBase.json"))
-            _movieDataBase = JsonSerializer.Deserialize<List<string>>(File.ReadAllText("MovieDataBase.json"))!;
+
+        _movieDataBase = JsonSerializer.Deserialize<List<string>>(File.ReadAllText("MovieDataBase.json"))!;
     }
 
     private async void Form1_Load(object sender, EventArgs e)
@@ -66,22 +67,23 @@ public partial class MainForm : Form
     private async void Search_Film()
     {
         using HttpClient client = new();
-        string jsonStr = await client.GetStringAsync($"{_url}&t={txt_search.Text}&plot=full");
+        string jsonStr = await client.GetStringAsync($"{_url}&t={txt_search.Text}");
 
         if (!jsonStr.Contains("Error"))
         {
             var movie = JsonSerializer.Deserialize<Movie>(jsonStr);
+            flowLayoutPanel1.Controls.Add(new UC_Movie(movie!));
+
             MovieInfo movieInfoForm = new(movie);
             movieInfoForm.ShowDialog();
 
-            flowLayoutPanel1.Controls.Add(new UC_Movie(movie!));
             _movieDataBase.Add(movie?.Title!);
             string str = JsonSerializer.Serialize(_movieDataBase);
             File.WriteAllText("MovieDataBase.json", str);
             return;
         }
 
-        MessageBox.Show("Movie Not Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        MessageBox.Show("No Result Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
     }
 
