@@ -172,24 +172,24 @@
             this.btn_sign_in.BackColor = System.Drawing.Color.Transparent;
             this.btn_sign_in.BackgroundImage = global::ZipFilmIzle.Properties.Resources.singIn;
             this.btn_sign_in.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btn_sign_in.Enabled = false;
             this.btn_sign_in.Location = new System.Drawing.Point(946, 9);
             this.btn_sign_in.Name = "btn_sign_in";
             this.btn_sign_in.Size = new System.Drawing.Size(94, 64);
             this.btn_sign_in.TabIndex = 7;
             this.btn_sign_in.UseVisualStyleBackColor = false;
+            this.btn_sign_in.Click += new System.EventHandler(this.btn_sign_in_Click);
             // 
             // btn_sign_Up
             // 
             this.btn_sign_Up.BackColor = System.Drawing.Color.Transparent;
             this.btn_sign_Up.BackgroundImage = global::ZipFilmIzle.Properties.Resources.singUp;
             this.btn_sign_Up.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btn_sign_Up.Enabled = false;
             this.btn_sign_Up.Location = new System.Drawing.Point(1058, 9);
             this.btn_sign_Up.Name = "btn_sign_Up";
             this.btn_sign_Up.Size = new System.Drawing.Size(94, 64);
             this.btn_sign_Up.TabIndex = 7;
             this.btn_sign_Up.UseVisualStyleBackColor = false;
+            this.btn_sign_Up.Click += new System.EventHandler(this.btn_sign_Up_Click);
             // 
             // panel1
             // 

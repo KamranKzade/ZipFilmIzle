@@ -10,6 +10,7 @@ public partial class MainForm : Form
     const string _apiKey = "82bcd4c7";
     const string _url = $"http://www.omdbapi.com/?apikey={_apiKey}";
     private List<string> _movieDataBase;
+    private List<User> _UserDataBase;
 
 
     public MainForm()
@@ -18,6 +19,8 @@ public partial class MainForm : Form
         _movieDataBase = new();
 
         _movieDataBase = JsonSerializer.Deserialize<List<string>>(File.ReadAllText("MovieDataBase.json"))!;
+        _UserDataBase = JsonSerializer.Deserialize<List<User>>(File.ReadAllText("UserDataBase.json"))!;
+
     }
 
     private async void Form1_Load(object sender, EventArgs e)
@@ -91,4 +94,27 @@ public partial class MainForm : Form
 
     private void btn_reflesh_Click(object sender, EventArgs e) => flowLayoutPanel1.Controls.Clear();
 
+    private void btn_sign_Up_Click(object sender, EventArgs e)
+    {
+        User newUser = new();
+        SignUpForm signUp = new SignUpForm();
+
+
+        if (signUp.ShowDialog() == DialogResult.OK)
+        {
+            newUser = signUp.GetUser();
+            _UserDataBase.Add(newUser);
+        }
+        string str = JsonSerializer.Serialize(_UserDataBase);
+        File.WriteAllText("UserDataBase.json", str);
+    }
+
+    private void btn_sign_in_Click(object sender, EventArgs e)
+    {
+        SignIn sign = new();
+        if (sign.ShowDialog() == DialogResult.OK)
+        {
+            flowLayoutPanel1.Controls.Clear();
+        }
+    }
 }
