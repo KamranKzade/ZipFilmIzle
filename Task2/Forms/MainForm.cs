@@ -16,7 +16,10 @@ public partial class MainForm : Form
     public MainForm()
     {
         InitializeComponent();
+
         _movieDataBase = new();
+        _UserDataBase = new();
+
 
         _movieDataBase = JsonSerializer.Deserialize<List<string>>(File.ReadAllText("MovieDataBase.json"))!;
         _UserDataBase = JsonSerializer.Deserialize<List<User>>(File.ReadAllText("UserDataBase.json"))!;
@@ -51,24 +54,7 @@ public partial class MainForm : Form
             MessageBox.Show("Please Enter Movie Name", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return;
         }
-        Search_Film();
-    }
 
-    private async void txt_search_KeyDown(object sender, KeyEventArgs e)
-    {
-        if (e.KeyCode == Keys.Enter)
-        {
-            if (string.IsNullOrWhiteSpace(txt_search.Text))
-            {
-                MessageBox.Show("Please Enter Movie Name", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            Search_Film();
-        }
-    }
-
-    private async void Search_Film()
-    {
         using HttpClient client = new();
         string jsonStr = await client.GetStringAsync($"{_url}&t={txt_search.Text}");
 
@@ -87,9 +73,40 @@ public partial class MainForm : Form
         }
 
         MessageBox.Show("No Result Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+   
     }
 
+    private async void txt_search_KeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.KeyCode == Keys.Enter)
+        {
+            if (string.IsNullOrWhiteSpace(txt_search.Text))
+            {
+                MessageBox.Show("Please Enter Movie Name", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            
+
+            using HttpClient client = new();
+            string jsonStr = await client.GetStringAsync($"{_url}&t={txt_search.Text}");
+
+            if (!jsonStr.Contains("Error"))
+            {
+                var movie = JsonSerializer.Deserialize<Movie>(jsonStr);
+                flowLayoutPanel1.Controls.Add(new UC_Movie(movie!));
+
+                MovieInfo movieInfoForm = new(movie);
+                movieInfoForm.ShowDialog();
+
+                _movieDataBase.Add(movie?.Title!);
+                string str = JsonSerializer.Serialize(_movieDataBase);
+                File.WriteAllText("MovieDataBase.json", str);
+                return;
+            }
+
+            MessageBox.Show("No Result Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+    }
 
     private void btn_cancel_Click(object sender, EventArgs e) => txt_search.Text = string.Empty;
 
